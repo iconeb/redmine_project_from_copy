@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+en:
+ label_project_new_from_copy: "New project from %{project}"
+ default_project_text_settings: "Select source project" 
+ default_project_settings_help: "Choose source project to copy from, selected among archived projects"
+ default_project_missing_projects: "No archived projects available"

@@ -1,0 +1,31 @@
+<fieldset>
+  <%= content_tag(:legend, l(:default_project_text_settings)) %>
+  <%= content_tag(:p, l(:default_project_settings_help)) %>
+
+  <p>
+    <%= content_tag(:label, l(:label_project)) %>
+
+    <%-
+      projects = Project.status(Project::STATUS_ARCHIVED).order('name ASC')
+      selected = @settings['default_project_id'] unless @settings['default_project_id'].blank?
+      selected ||= []
+    -%>
+
+    <% unless projects.empty? %>
+    <%=
+      select_tag("settings[default_project_id]",
+                 content_tag(:option, '') +
+                 options_from_collection_for_select(projects, :id, :name,
+                 unless selected.blank?
+                 Integer(selected)
+                 end
+                 ),
+                 :multiple => false,
+                 :size => 5)
+   %>
+   <% else %>
+     <%= link_to(l(:default_project_missing_projects),
+                   :controller => 'projects', :action => 'index') %>
+   <% end %>
+ </p>
+</fieldset>
